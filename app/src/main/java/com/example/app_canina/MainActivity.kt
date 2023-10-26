@@ -7,24 +7,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.app_canina.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val ageEdit = findViewById<EditText>(R.id.age_edit)
-        val resultText = findViewById<TextView>(R.id.result_text)
-        val button = findViewById<Button>(R.id.button)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
 
         Log.d("MainActivity", "Activity Created")
 
-        button.setOnClickListener {
-            val ageString = ageEdit.text.toString();
+        binding.button.setOnClickListener {
+            val ageString = binding.ageEdit.text.toString()
             if (ageString.isNotEmpty()){
                 val ageInt = ageString.toInt();
                 val result = ageInt * 7;
-                resultText.text = getString(R.string.resul_text, result);
+                binding.resultText.text = getString(R.string.resul_text, result);
             }
             else {
                 Log.d("MainActivity", "Age string is empty");
